@@ -1,6 +1,6 @@
-# Forge Hello World
+# Jira Story Completeness Analyzer
 
-This project contains a Forge app written in Javascript that displays `Hello World!` in a Jira issue panel. 
+This project contains a Forge app written in JavaScript that analyzes Jira user stories for completeness. The app displays a completeness score and checklist showing which sections are present in the story description. 
 
 See [developer.atlassian.com/platform/forge/](https://developer.atlassian.com/platform/forge) for documentation and tutorials explaining Forge.
 
@@ -8,11 +8,26 @@ See [developer.atlassian.com/platform/forge/](https://developer.atlassian.com/pl
 
 See [Set up Forge](https://developer.atlassian.com/platform/forge/set-up-forge/) for instructions to get set up.
 
+## Features
+
+The app analyzes Jira user stories and checks for:
+- **User Story Format**: Requires all three keywords (Given, When, Then) to be present
+- **Acceptance Criteria**: Checks for acceptance criteria, AC, or requirements
+- **Test Cases**: Checks for test cases, testing, or scenarios
+- **Dependencies / Assumptions**: Checks for dependency, dependencies, assumption, or assumptions
+
+The app displays a completeness score (X/4) and a visual progress bar that changes color based on completion:
+- 0/4: Gray
+- 1/4: Soft amber (#FBBF24)
+- 2/4: Warm amber (#F59E0B)
+- 3/4: Lime-green (#84CC16)
+- 4/4: Green (#16A34A)
+
 ## Quick start
 
-- Modify your app frontend by editing the `src/frontend/index.jsx` file.
+- Modify your app frontend by editing the `src/index.jsx` file.
 
-- Modify your app backend by editing the `src/resolvers/index.js` file to define resolver functions. See [Forge resolvers](https://developer.atlassian.com/platform/forge/runtime-reference/custom-ui-resolver/) for documentation on resolver functions.
+- Modify your app backend by editing the `src/resolver.js` file to define resolver functions. See [Forge resolvers](https://developer.atlassian.com/platform/forge/runtime-reference/custom-ui-resolver/) for documentation on resolver functions.
 
 - Build and deploy your app by running:
 ```
