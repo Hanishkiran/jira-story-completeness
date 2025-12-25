@@ -1,0 +1,22 @@
+modules:
+  jira:issuePanel:
+    - key: jira-story-completeness-panel
+      resource: main
+      resolver:
+        function: resolver-func
+      render: native
+      title: Story Completeness
+      icon: https://developer.atlassian.com/platform/forge/images/icons/issue-panel-icon.svg
+  function:
+    - key: resolver-func
+      handler: resolver.handler # This points to src/resolver.js
+resources:
+  - key: main
+    path: src/index.jsx
+app:
+  runtime:
+    name: nodejs20.x
+  id: ari:cloud:ecosystem::app/edf287df-546a-45a8-b2aa-0b4bef77c7d0
+permissions:
+  scopes:
+    - read:jira-work
