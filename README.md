@@ -16,12 +16,7 @@ The app analyzes Jira user stories and checks for:
 - **Test Cases**: Checks for test cases, testing, or scenarios
 - **Dependencies / Assumptions**: Checks for dependency, dependencies, assumption, or assumptions
 
-The app displays a completeness score (X/4) and a visual progress bar that changes color based on completion:
-- 0/4: Gray
-- 1/4: Soft amber (#FBBF24)
-- 2/4: Warm amber (#F59E0B)
-- 3/4: Lime-green (#84CC16)
-- 4/4: Green (#16A34A)
+The app displays a completeness score (X/4) and a visual progress bar that changes based on completion:
 
 ## Quick start
 
