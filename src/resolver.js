@@ -18,6 +18,15 @@ resolver.define('analyzeStory', async ({ payload, context }) => {
   
   // Fetching data as the App (backend)
   const response = await api.asApp().requestJira(route`/rest/api/3/issue/${issueId}`);
+  
+  // Check if request was successful
+  if (!response.ok) {
+    if (response.status === 404) {
+      throw new Error('Issue not found');
+    }
+    throw new Error(`Failed to fetch issue: ${response.status} ${response.statusText}`);
+  }
+  
   const data = await response.json();
   
   const rawDesc = data.fields.description;

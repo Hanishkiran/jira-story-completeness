@@ -23,18 +23,28 @@ const App = () => {
       lastFetchedIssueId.current = issueId;
       setLoading(true);
       setError(null);
+      setAnalysis(null); // Clear old analysis when switching issues
       invoke('analyzeStory', { issueId })
         .then(result => {
-          setAnalysis(result);
-          setLoading(false);
+          // Only update if this is still the current issue (prevent race conditions)
+          if (lastFetchedIssueId.current === issueId) {
+            setAnalysis(result);
+            setLoading(false);
+          }
         })
         .catch(err => {
-          setError(err.message || 'Failed to analyze story');
-          setLoading(false);
+          // Only update error if this is still the current issue
+          if (lastFetchedIssueId.current === issueId) {
+            setError(err.message || 'Failed to analyze story');
+            setLoading(false);
+            setAnalysis(null); // Clear analysis on error
+          }
         });
     } else if (!issueId) {
-      // If no issueId, ensure we're not in a loading state
+      // If no issueId, clear state
       setLoading(false);
+      setAnalysis(null);
+      setError(null);
     }
   }, [issueId]); // Only depend on issueId, not the entire context object
 
